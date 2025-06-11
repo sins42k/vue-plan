@@ -1,0 +1,196 @@
+/* 기본 리셋: 여백 제거 + 박스 사이즈 통일 + 리스트 스타일 제거 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* 화면 중앙 정렬 + 배경 + 기본 글꼴 */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbeafe, #f0f4ff);
+  font-family: 'Segoe UI', 'Gabarito', sans-serif;
+}
+
+/* Todo 전체 박스: 카드 형태 UI */
+.todo {
+  width: 360px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Todo 제목 영역: 중앙 정렬 + 하단 경계선 */
+.todo__title {
+  text-align: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* 제목 텍스트 스타일 */
+.todo__text {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 탭 전체 컨테이너: 가로 정렬, 여백 분배 */
+.todo__tab {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+/* 탭 항목 버튼 스타일 (기본) */
+.todo__tab li {
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f1f5f9;
+  color: #555;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 탭 활성 상태 스타일 (선택된 필터) */
+.todo__tab--active {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+}
+
+/* 할 일 목록 전체 영역: 스크롤 영역 포함 */
+.todo__list {
+  margin-top: 20px;
+  padding: 0 4px;
+  height: 360px;
+  overflow-y: auto;
+}
+
+/* 개별 할 일 항목 박스 */
+.todo__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: #f9fafb;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease;
+}
+
+/* 마우스 오버 시 확대 효과 */
+.todo__item:hover {
+  transform: scale(1.01);
+}
+
+/* 완료된 할 일 항목의 배경 스타일 */
+.todo__item--completed {
+  background-color: #e0e7ff;
+}
+
+/* 완료된 항목의 텍스트 취소선 + 색상 */
+.todo__item--completed .todo__item-text {
+  text-decoration: line-through;
+  color: #666;
+}
+
+/* 할 일 텍스트: 넘칠 경우 생략(...) 처리 */
+.todo__item-text {
+  flex-grow: 1;
+  margin: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* "할일 목록이 없습니다" 메시지 박스 */
+.todo__item--no {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  color: #777;
+}
+
+/* 기본 체크박스 숨기기 (커스텀 라벨 사용) */
+.todo__item input[type='checkbox'] {
+  display: none;
+}
+
+/* 체크박스 대신 보이는 라벨 박스 */
+.todo__item input[type='checkbox'] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* 체크된 상태의 체크마크 표시 */
+.todo__item input[type='checkbox']:checked + label::after {
+  content: '✔';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  font-size: 14px;
+  color: #3b82f6;
+}
+
+/* 삭제 아이콘 스타일 (휴지통 모양) */
+.todo__delete-icon {
+  flex-shrink: 0;
+  color: #f87171;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* 삭제 아이콘 마우스 오버 시 확대 */
+.todo__delete-icon:hover {
+  transform: scale(1.2);
+}
+
+/* 입력창 전체 영역: 인풋 + 버튼 가로 배치 */
+.todo__input {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* 텍스트 인풋 스타일 */
+.todo__input-text {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* 등록 버튼 스타일 */
+.todo__input-btn {
+  background-color: #3b82f6;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* 버튼 마우스 오버 시 색상 변경 */
+.todo__input-btn:hover {
+  background-color: #2563eb;
+}
